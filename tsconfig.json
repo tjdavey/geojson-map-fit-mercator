@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    // Module settings.
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+
+    // Strictness and quality settings.
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+
+    // Type-checking settings.
+    "lib": ["es2023"],
+    "skipLibCheck": true,
+    "types": ["jest"]
+  },
+  "include": ["./src/**/*.ts"]
+}

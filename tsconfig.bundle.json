@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Output settings.
+    "newLine": "lf",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "target": "es2015",
+
+    // Type declaration settings.
+    "declaration": true,
+    "declarationDir": "./types",
+    "declarationMap": true,
+    "isolatedDeclarations": true,
+
+    // Type-checking settings.
+    "skipLibCheck": false,
+    "types": []
+  },
+  "exclude": ["./src/**/*.test.ts"]
+}

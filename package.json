@@ -1,0 +1,82 @@
+{
+  "name": "map-fit-mercator",
+  "version": "0.0.1",
+  "description": "Finds the optimal bearing, zoom and center point for fitting a set of GeoJSON features in a Mapbox GL or LibreMap Mercator map.",
+  "cdn": "dist/index.umd.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "jsdelivr": "dist/index.umd.js",
+  "umd:main": "dist/index.umd.js",
+  "files": [
+    "dist/",
+    "types/"
+  ],
+  "exports": {
+    ".": [
+      {
+        "types": "./types/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.js"
+      },
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "docs": "typedoc --out docs src",
+    "lint:types": "tsc --project ./tsconfig.json --noEmit",
+    "lint:ts": "eslint src",
+    "lint": "npm run lint:types && npm run lint:ts",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/eslint__js": "^8.42.3",
+    "@types/jest": "^29.5.13",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "rollup": "^4.22.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-jest": "^29.2.5",
+    "ts-jest-resolver": "^2.0.1",
+    "typedoc": "^0.27.9",
+    "typedoc-plugin-markdown": "^4.2.7",
+    "typescript": "~5.5.4",
+    "typescript-eslint": "^8.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjdavey/map-fit-mercator.git"
+  },
+  "keywords": [
+    "Mapbox",
+    "GL",
+    "Libremap",
+    "Mercator",
+    "Bounding",
+    "Box",
+    "Screen",
+    "Fit",
+    "Fit-to-screen",
+    "bbox"
+  ],
+  "author": "Tristan Davey <tristan@tristandavey.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjdavey/map-fit-mercator/issues"
+  },
+  "homepage": "https://github.com/tjdavey/map-fit-mercator#readme",
+  "dependencies": {
+    "@mapbox/sphericalmercator": "^2.0.1",
+    "@turf/turf": "^7.2.0",
+    "geojson": "^0.5.0",
+    "geojson-minimum-bounding-rectangle": "^2.0.2"
+  }
+}
