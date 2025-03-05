@@ -2,7 +2,7 @@
 
 import terser from '@rollup/plugin-terser';
 import typescript2 from 'rollup-plugin-typescript2';
-import packageJSON from './package.json' assert { type: 'json' };
+import packageJSON from './package.json' with { type: 'json' };
 
 /**
  * Comment with library information to be appended in the generated bundles.
@@ -36,30 +36,13 @@ const options = {
   input: './src/index.ts',
   output: [
     createOutputOptions({
-      file: './dist/index.js',
-      format: 'commonjs',
-    }),
-    createOutputOptions({
       file: './dist/index.cjs',
       format: 'commonjs',
     }),
     createOutputOptions({
       file: './dist/index.mjs',
       format: 'esm',
-    }),
-    createOutputOptions({
-      file: './dist/index.esm.js',
-      format: 'esm',
-    }),
-    createOutputOptions({
-      file: './dist/index.umd.js',
-      format: 'umd',
-    }),
-    createOutputOptions({
-      file: './dist/index.umd.min.js',
-      format: 'umd',
-      plugins: [terser()],
-    }),
+    })
   ],
   plugins: [
     typescript2({
@@ -68,6 +51,7 @@ const options = {
       tsconfig: './tsconfig.bundle.json',
     }),
   ],
+  external: ['geojson-minimum-bounding-rectangle', '@mapbox/sphericalmercator', '@turf/turf']
 };
 
 export default options;

@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     // Module settings.
+    "target": "es5",
     "esModuleInterop": true,
-    "module": "es2022",
+    "module": "ES2020",
     "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
     "resolveJsonModule": true,
-    "verbatimModuleSyntax": true,
 
     // Strictness and quality settings.
     "exactOptionalPropertyTypes": true,
@@ -22,7 +25,7 @@
     // Type-checking settings.
     "lib": ["es2023"],
     "skipLibCheck": true,
-    "types": ["jest"]
+    "types": ["jest", "node"],
   },
   "include": ["./src/**/*.ts"]
 }

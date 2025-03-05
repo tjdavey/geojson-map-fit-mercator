@@ -1,81 +1,131 @@
-import { smallestSurroundingRectangleByWidth } from 'geojson-minimum-bounding-rectangle';
+//import { smallestSurroundingRectangleByWidth } from 'geojson-minimum-bounding-rectangle';
 import { SphericalMercator } from '@mapbox/sphericalmercator';
 import * as turf from '@turf/turf';
-import type { Lines } from '@turf/helpers';
-import type {
-  Feature,
-  FeatureCollection,
-  Position,
-  GeoJsonProperties,
-  GeometryCollection,
-  Geometry,
-  LineString,
-  MultiLineString,
-} from 'geojson';
+import type { Polygon, Feature, FeatureCollection, Position, LineString } from 'geojson';
 
-interface fitMapOptions {
+interface mapFitOptions {
   tileSize?: number;
   antimeridian?: boolean;
 }
 
-interface fitMapPadding {
+interface mapFitPadding {
   left?: number;
   right?: number;
   top?: number;
   bottom?: number;
 }
 
-interface fitMapResult {
+interface mapFitResult {
   bearing: number;
   zoom: number;
   center: Position;
 }
 
+interface rectangleOrientation {
+  shortSide: Feature<LineString> | undefined;
+  longSide: Feature<LineString> | undefined;
+}
+
+interface boundingOrientation {
+  bearing: number | undefined;
+  shortSide: Feature<LineString> | undefined;
+  longSide: Feature<LineString> | undefined;
+  envelope: Feature<Polygon> | undefined;
+}
+
 type XY = [number, number];
 type LonLat = [number, number];
 
-function fitMapFeatures({
+export function minimumBoundingRectangle(geoJsonInput: turf.AllGeoJSON): {
+  boundsOrientation: boundingOrientation;
+  boundingRectangle: Feature<Polygon>;
+} {
+  // Create a convex hull around the input geometry
+  const convexHull = turf.convex(geoJsonInput);
+  if (!convexHull) throw new Error("Can't determine minimumBoundingRectangle for given geometry");
+
+  // Break the hull into its constituent edges and find the smallest
+  const hullLines = turf.polygonToLine(convexHull);
+  const smallestHullBoundsOrientation = turf.segmentReduce(
+    hullLines,
+    (smallestEnvelope: boundingOrientation | undefined, segment) => {
+      return smallestHullEnvelopeReducer(smallestEnvelope, segment!, convexHull);
+    },
+    { bearing: undefined, shortSide: undefined, longSide: undefined, envelope: undefined },
+  );
+
+  const boundingRectangle = turf.transformRotate(
+    turf.envelope(smallestHullBoundsOrientation.envelope!),
+    smallestHullBoundsOrientation.bearing!,
+    {
+    pivot: turf.centroid(convexHull),
+  });
+
+  return {
+    boundsOrientation: smallestHullBoundsOrientation,
+    boundingRectangle,
+  };
+}
+
+function smallestHullEnvelopeReducer(
+  smallestEnvelope: boundingOrientation | undefined,
+  segment: Feature<LineString>,
+  hull: Feature<Polygon>,
+): boundingOrientation {
+  const segmentCoords = turf.getCoords(segment);
+  const bearing = turf.bearing(segmentCoords[0], segmentCoords[1]);
+
+  const rotatedHull = turf.transformRotate(hull, -1.0 * bearing, {
+    pivot: turf.centroid(hull),
+  });
+  const envelopeOfHull = turf.envelope(rotatedHull);
+
+  const { shortSide, longSide } = findRectangleOrientation(envelopeOfHull)!;
+  const shortSideLength = turf.length(shortSide!);
+
+  if (smallestEnvelope!.shortSide == undefined || shortSideLength < turf.length(smallestEnvelope!.shortSide)) {
+    return { bearing, shortSide: shortSide!, longSide: longSide!, envelope: envelopeOfHull };
+  }
+
+  return smallestEnvelope!;
+}
+
+function mapFitFeatures({
   features,
   screenDimensions,
-  mapPadding = {} as fitMapPadding,
+  mapPadding = {} as mapFitPadding,
   maxZoom = 20,
-  options = {} as fitMapOptions,
+  options = {} as mapFitOptions,
 }: {
   features: FeatureCollection;
   screenDimensions: XY;
-  mapPadding?: fitMapPadding;
+  mapPadding?: mapFitPadding;
   maxZoom?: number;
-  options?: fitMapOptions;
-}): fitMapResult {
+  options?: mapFitOptions;
+}): mapFitResult {
   const { tileSize = 512, antimeridian = true } = options;
 
   const merc: SphericalMercator = new SphericalMercator({
     size: tileSize,
     antimeridian: antimeridian,
   });
-  const surroundingRectangle = smallestSurroundingRectangleByWidth(features);
-  if (!surroundingRectangle) {
-    throw new Error('Unable to calculate surrounding rectangle');
+  const {
+    boundsOrientation: { shortSide, longSide, bearing: baseBearing },
+    boundingRectangle,
+  } = minimumBoundingRectangle(features);
+
+  if (!boundingRectangle) {
+    throw new Error('Unable to calculate bounding rectangle');
   }
 
-  const longestLine = findLine(surroundingRectangle!, (a, b) => turf.length(a) > turf.length(b));
-  const shortestLine = findLine(surroundingRectangle!, (a, b) => turf.length(a) < turf.length(b));
-
-  if (!longestLine || !shortestLine) {
-    throw new Error('Unable to orient surrounding rectangle');
-  }
-
-  // Use the longest side of the polygon to calculate the base bearing
-  let bearing = 0;
-
-  const longestLineCoords = turf.getCoords(longestLine);
-  const shortestLineCoords = turf.getCoords(shortestLine);
+  const longSideCoords = turf.getCoords(longSide!);
+  const shortSideCoords = turf.getCoords(shortSide!);
 
   // We need to determine the ratio required for the zoom level. To do this we are going to approximate the length
   // of the longest and shortest sides of the polygon in pixels (This doesn't account for projection distortion but is
   // a good estimation)
-  const longPx: [XY, XY] = [merc.px(longestLineCoords[0], maxZoom), merc.px(longestLineCoords[1], maxZoom)];
-  const shortPx: [XY, XY] = [merc.px(shortestLineCoords[0], maxZoom), merc.px(shortestLineCoords[1], maxZoom)];
+  const longPx: [XY, XY] = [merc.px(longSideCoords[0], maxZoom), merc.px(longSideCoords[1], maxZoom)];
+  const shortPx: [XY, XY] = [merc.px(shortSideCoords[0], maxZoom), merc.px(shortSideCoords[1], maxZoom)];
 
   // Because these points aren't aligned to the axis, we use the Pythagorean theorem to calculate the distance
   const longPxX = longPx[0][0] - longPx[1][0];
@@ -95,12 +145,13 @@ function fitMapFeatures({
   const yPadding = top + bottom;
 
   // If the screen is wider than it is tall, rotate the bearing by 90 degrees
+  let bearing = 0;
   if (screenWidth + xPadding > screenHeight + yPadding) {
-    bearing = turf.bearing(shortestLineCoords[0], shortestLineCoords[1]);
+    bearing = baseBearing! + 90;
     xPx = longPxDistance;
     yPx = shortPxDistance;
   } else {
-    bearing = turf.bearing(longestLineCoords[0], longestLineCoords[1]);
+    bearing = baseBearing!;
     xPx = shortPxDistance;
     yPx = longPxDistance;
   }
@@ -108,7 +159,7 @@ function fitMapFeatures({
   const ratios: XY = [Math.abs(xPx / (screenWidth - xPadding)), Math.abs(yPx / (screenHeight - yPadding))];
   const zoom = getOptimalZoom(maxZoom, ratios);
 
-  const centroid = turf.centroid(surroundingRectangle);
+  const centroid = turf.centroid(boundingRectangle);
   if (!centroid) {
     throw new Error('Unable to calculate centre of surrounding rectangle');
   }
@@ -143,24 +194,25 @@ function fitMapFeatures({
   }
 }
 
-function findLine(
-  polygon: Feature<Lines, GeoJsonProperties> | Feature<GeometryCollection<Geometry>, GeoJsonProperties>,
-  compareFn: (
-    a: FeatureCollection | Feature | GeometryCollection,
-    b: FeatureCollection | Feature | GeometryCollection,
-  ) => boolean,
-): Feature<LineString | MultiLineString> {
-  return turf.segmentReduce(polygon, (longestSegment, segment) => {
-    if (!longestSegment) {
-      return segment!;
-    }
+function findRectangleOrientation(rectangle: Feature<Polygon>): rectangleOrientation {
+  const rectangleSides = turf.polygonToLine(rectangle);
+  return turf.segmentReduce(
+    rectangleSides,
+    (sideOrientation: rectangleOrientation | undefined, segment): rectangleOrientation => {
+      const segmentLength = turf.length(segment!);
 
-    if (compareFn(segment!, longestSegment!)) {
-      return segment!;
-    }
+      if (sideOrientation!.shortSide == undefined || turf.length(sideOrientation!.shortSide) > segmentLength) {
+        sideOrientation!.shortSide = segment!;
+      }
 
-    return longestSegment!;
-  });
+      if (sideOrientation!.longSide == undefined || turf.length(sideOrientation!.longSide) < segmentLength) {
+        sideOrientation!.longSide = segment!;
+      }
+
+      return sideOrientation!;
+    },
+    { shortSide: undefined, longSide: undefined },
+  );
 }
 
 function isLonLat(lonLat: Position): lonLat is LonLat {
@@ -171,4 +223,4 @@ function getOptimalZoom(baseZoom: number, ratios: [number, number]) {
   return Math.min(baseZoom - Math.log(ratios[0]) / Math.log(2), baseZoom - Math.log(ratios[1]) / Math.log(2));
 }
 
-export { fitMapFeatures };
+export { mapFitFeatures };

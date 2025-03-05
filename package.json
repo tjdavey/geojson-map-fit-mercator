@@ -2,13 +2,9 @@
   "name": "map-fit-mercator",
   "version": "0.0.1",
   "description": "Finds the optimal bearing, zoom and center point for fitting a set of GeoJSON features in a Mapbox GL or LibreMap Mercator map.",
-  "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
-  "unpkg": "dist/index.umd.js",
   "module": "dist/index.esm.js",
-  "jsdelivr": "dist/index.umd.js",
-  "umd:main": "dist/index.umd.js",
   "files": [
     "dist/",
     "types/"
@@ -46,6 +42,7 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "ts-jest": "^29.2.5",
     "ts-jest-resolver": "^2.0.1",
+    "ts-node": "^10.9.2",
     "typedoc": "^0.27.9",
     "typedoc-plugin-markdown": "^4.2.7",
     "typescript": "~5.5.4",
@@ -76,7 +73,6 @@
   "dependencies": {
     "@mapbox/sphericalmercator": "^2.0.1",
     "@turf/turf": "^7.2.0",
-    "geojson": "^0.5.0",
-    "geojson-minimum-bounding-rectangle": "^2.0.2"
+    "geojson": "^0.5.0"
   }
 }
