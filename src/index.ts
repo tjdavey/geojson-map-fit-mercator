@@ -1,4 +1,3 @@
-//import { smallestSurroundingRectangleByWidth } from 'geojson-minimum-bounding-rectangle';
 import { SphericalMercator } from '@mapbox/sphericalmercator';
 import * as turf from '@turf/turf';
 import type { Polygon, Feature, FeatureCollection, Position, LineString } from 'geojson';
