@@ -5,7 +5,9 @@ import type { Polygon, Feature, FeatureCollection, Position, LineString } from '
 interface mapFitOptions {
   tileSize?: number;
   preferredBearing?: number;
+  maxZoom?: number;
   floatZoom?: boolean;
+  mapPadding?: mapFitPadding;
 }
 
 interface mapFitPadding {
@@ -38,8 +40,6 @@ type LonLat = [number, number];
 function mapFitFeatures({
   features,
   screenDimensions,
-  mapPadding = {} as mapFitPadding,
-  maxZoom = 20,
   options = {} as mapFitOptions,
 }: {
   features: FeatureCollection;
@@ -49,7 +49,13 @@ function mapFitFeatures({
   options?: mapFitOptions;
 }): mapFitResult {
   // Set default options
-  const { tileSize = 512, preferredBearing = 0 } = options;
+  const {
+    tileSize = 512,
+    preferredBearing = 0,
+    mapPadding = {} as mapFitPadding,
+    maxZoom = 23,
+    floatZoom = false,
+  } = options;
 
   // Create a mercator projection. SphericalMercator caches its calculations so it's safe to create a new instance each run
   const merc: SphericalMercator = new SphericalMercator({ size: tileSize, antimeridian: true });
@@ -70,7 +76,14 @@ function mapFitFeatures({
   }
 
   // Determine how to fit the bounding rectangle to the screen
-  const zoom = findScreenZoom([paddedScreenWidth, paddedScreenHeight], paddedScreenRatio, orientation, maxZoom, merc);
+  const zoom = findScreenZoom(
+    [paddedScreenWidth, paddedScreenHeight],
+    paddedScreenRatio,
+    orientation,
+    maxZoom,
+    floatZoom,
+    merc,
+  );
   const bearing = findScreenBearing(baseBearing!, preferredBearing, paddedScreenRatio);
   const center = findScreenCenter(boundingRectangle, bearing, zoom, mapPadding, merc);
 
@@ -82,6 +95,7 @@ function findScreenZoom(
   paddedScreenRatio: number,
   boundingRectangleOrientation: rectangleOrientation,
   maxZoom: number,
+  floatZoom: boolean,
   merc: SphericalMercator,
 ): number {
   const { shortSide, longSide } = boundingRectangleOrientation;
@@ -112,7 +126,8 @@ function findScreenZoom(
   }
 
   const ratios: XY = [Math.abs(xPx / paddedScreenDimensions[0]), Math.abs(yPx / paddedScreenDimensions[1])];
-  return Math.min(maxZoom - Math.log(ratios[0]) / Math.log(2), maxZoom - Math.log(ratios[1]) / Math.log(2));
+  const zoom = Math.min(maxZoom - Math.log(ratios[0]) / Math.log(2), maxZoom - Math.log(ratios[1]) / Math.log(2));
+  return floatZoom ? zoom : Math.floor(zoom);
 }
 
 function findScreenBearing(boundingRectangleBearing: number, preferredBearing: number, screenRatio: number): number {
