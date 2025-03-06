@@ -1,5 +1,5 @@
 {
-  "name": "map-fit-mercator",
+  "name": "geojson-map-fit-mercator",
   "version": "0.0.1",
   "description": "Finds the optimal bearing, zoom and center point for fitting a set of GeoJSON features in a Mapbox GL or LibreMap Mercator map.",
   "main": "dist/index.js",
@@ -50,12 +50,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjdavey/map-fit-mercator.git"
+    "url": "git+https://github.com/tjdavey/geojson-map-fit-mercator.git"
   },
   "keywords": [
     "Mapbox",
+    "MapLibre",
     "GL",
-    "Libremap",
     "Mercator",
     "Bounding",
     "Box",
@@ -67,9 +67,9 @@
   "author": "Tristan Davey <tristan@tristandavey.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjdavey/map-fit-mercator/issues"
+    "url": "https://github.com/tjdavey/geojson-map-fit-mercator/issues"
   },
-  "homepage": "https://github.com/tjdavey/map-fit-mercator#readme",
+  "homepage": "https://github.com/tjdavey/geojson-map-fit-mercator#readme",
   "dependencies": {
     "@mapbox/sphericalmercator": "^2.0.1",
     "@turf/turf": "^7.2.0",
