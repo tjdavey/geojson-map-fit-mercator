@@ -7,49 +7,38 @@ const fixturePoints2 = JSON.parse(fs.readFileSync('test/fixtures/points2.json', 
 
 describe('mapFitFeatures', () => {
   it('should fit the map to a set of features', () => {
-    const result = mapFitFeatures({
-      features: fixturePoints1,
-      screenDimensions: [800, 600],
-    });
+    const result = mapFitFeatures(fixturePoints1, [800, 600]);
 
     expect(result).toEqual({
-      bearing: 247.2631916432975,
-      zoom: 10.289613265667661,
-      center: [153.03708674911442, -27.524976579151936],
+      bearing: 67.26319164329749,
+      zoom: 10.28961353474488,
+      center: [153.06905948819335, -27.57125663746671],
     });
   });
 
   it('should fit the map to a different set of features', () => {
-    const result = mapFitFeatures({
-      features: fixturePoints2,
-      screenDimensions: [800, 600],
-    });
+    const result = mapFitFeatures(fixturePoints2, [800, 600]);
 
     expect(result).toEqual({
-      bearing: 233.33512569699616,
-      zoom: 5.268314109632129,
-      center: [148.57471973355217, -23.150148676222155],
+      bearing: 53.33512569699616,
+      zoom: 5.268314076490395,
+      center: [151.20189151607266, -25.888808450872187],
     });
   });
 
   it('should fit the map to a set of features with different screen ratio', () => {
-    const result = mapFitFeatures({
-      features: fixturePoints1,
-      screenDimensions: [400, 1200],
-    });
+    const result = mapFitFeatures(fixturePoints1, [400, 1200]);
 
     expect(result).toEqual({
-      bearing: 157.2631916432975,
-      zoom: 10.874575766388817,
-      center: [153.0370867491144, -27.52497657915196],
+      bearing: 337.2631916432975,
+      zoom: 10.874576035466035,
+      center: [153.0690594881934, -27.5712566374667],
     });
   });
 
   it('should fit the map to a set of features with padding', () => {
-    const result = mapFitFeatures({
-      features: fixturePoints1,
-      screenDimensions: [800, 600],
-      mapPadding: {
+    const result = mapFitFeatures(fixturePoints1, [800, 600], {
+      padding: {
         left: 0,
         right: 100,
         top: 50,
@@ -58,9 +47,9 @@ describe('mapFitFeatures', () => {
     });
 
     expect(result).toEqual({
-      bearing: 247.2631916432975,
-      zoom: 10.096968187725265,
-      center: [153.04187912545763, -27.461446002679352],
+      bearing: 67.26319164329749,
+      zoom: 10.096968456802484,
+      center: [153.06426711274398, -27.634723737937943],
     });
   });
 });
