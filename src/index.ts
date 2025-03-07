@@ -2,12 +2,15 @@ import { SphericalMercator } from '@mapbox/sphericalmercator';
 import * as turf from '@turf/turf';
 import type { Polygon, Feature, FeatureCollection, Position, LineString } from 'geojson';
 
+type XY = [number, number];
+type LngLat = [number, number];
+
 interface mapFitOptions {
   tileSize?: number;
   preferredBearing?: number;
   maxZoom?: number;
   floatZoom?: boolean;
-  mapPadding?: mapFitPadding;
+  padding?: mapFitPadding;
 }
 
 interface mapFitPadding {
@@ -20,7 +23,7 @@ interface mapFitPadding {
 interface mapFitResult {
   bearing: number;
   zoom: number;
-  center: Position;
+  center: LngLat;
 }
 
 interface rectangleOrientation {
@@ -34,33 +37,24 @@ interface boundingOrientation {
   envelope: Feature<Polygon> | undefined;
 }
 
-type XY = [number, number];
-type LonLat = [number, number];
-
-function mapFitFeatures({
-  features,
-  screenDimensions,
-  options = {} as mapFitOptions,
-}: {
-  features: FeatureCollection;
-  screenDimensions: XY;
-  mapPadding?: mapFitPadding;
-  maxZoom?: number;
-  options?: mapFitOptions;
-}): mapFitResult {
+function mapFitFeatures(
+  features: FeatureCollection,
+  screenDimensions: XY,
+  options: mapFitOptions = {} as mapFitOptions,
+): mapFitResult {
   // Set default options
   const {
     tileSize = 512,
     preferredBearing = 0,
-    mapPadding = {} as mapFitPadding,
+    padding = {} as mapFitPadding,
     maxZoom = 23,
-    floatZoom = false,
+    floatZoom = true,
   } = options;
 
   // Create a mercator projection. SphericalMercator caches its calculations so it's safe to create a new instance each run
   const merc: SphericalMercator = new SphericalMercator({ size: tileSize, antimeridian: true });
   const [screenWidth, screenHeight] = screenDimensions;
-  const { left = 0, right = 0, top = 0, bottom = 0 } = mapPadding;
+  const { left = 0, right = 0, top = 0, bottom = 0 } = padding;
   const paddedScreenWidth = screenWidth - left - right;
   const paddedScreenHeight = screenHeight - top - bottom;
   const paddedScreenRatio = paddedScreenWidth / paddedScreenHeight;
@@ -85,7 +79,7 @@ function mapFitFeatures({
     merc,
   );
   const bearing = findScreenBearing(baseBearing!, preferredBearing, paddedScreenRatio);
-  const center = findScreenCenter(boundingRectangle, bearing, zoom, mapPadding, merc);
+  const center = findScreenCenter(boundingRectangle, bearing, zoom, padding, merc);
 
   return { bearing, zoom, center };
 }
@@ -134,16 +128,13 @@ function findScreenBearing(boundingRectangleBearing: number, preferredBearing: n
   let bearing = boundingRectangleBearing;
   // Rotate the bearing by 90 degrees if the screen is wider than it is tall
   if (screenRatio > 1) {
-    bearing = bearing + 90;
+    bearing = bearing + 90 % 360;
   }
 
   // Rotate the bearing 180 degrees if the preferred bearing is on the opposite side of the screen
-  if (Math.abs(bearing - preferredBearing) > 180) {
-    bearing = bearing + 180;
+  if (bearing < preferredBearing - 90 % 360 || bearing > preferredBearing + 90 % 360) {
+    bearing = (bearing + 180) % 360;
   }
-
-  // Ensure the bearing is between 0 and 360
-  bearing = bearing % 360;
 
   return bearing;
 }
@@ -156,12 +147,12 @@ function findScreenCenter(
   merc: SphericalMercator,
 ) {
   const { left = 0, right = 0, top = 0, bottom = 0 } = padding;
-  const centroid = turf.centroid(boundingRectangle);
-  if (!centroid) {
+  const centerPoint = turf.center(boundingRectangle);
+  if (!centerPoint) {
     throw new Error('Unable to calculate centre of surrounding rectangle');
   }
-  const center = turf.getCoord(centroid)!;
-  if (!isLonLat(center)) {
+  const center = turf.getCoord(centerPoint)!;
+  if (!isLngLat(center)) {
     throw new Error('Unable to calculate centre of surrounding rectangle');
   }
 
@@ -262,7 +253,7 @@ function findRectangleOrientation(rectangle: Feature<Polygon>): rectangleOrienta
   );
 }
 
-function isLonLat(lonLat: Position): lonLat is LonLat {
+function isLngLat(lonLat: Position): lonLat is LngLat {
   return lonLat.length === 2 && lonLat.every((coord) => typeof coord === 'number');
 }
 
