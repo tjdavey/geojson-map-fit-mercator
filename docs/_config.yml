@@ -1,0 +1,19 @@
+title: GeoJSON Map Fit Mercator
+email: tristan@tristandavey.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Typescript library for finding the optimal bearing, zoom and center point for fitting a set of GeoJSON features in a 
+  Mapbox GL or LibreMap Mercator map viewport.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  tjdavey
+
+# Build settings
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
+
+exclude:
+  - src
+
+install_instructions_npm: npm install geojson-map-fit-mercator
+install_instructions_yarn: yarn add geojson-map-fit-mercator

@@ -1,0 +1,98 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.header-content {
+  max-width: 64rem;
+  padding: 0 6rem;
+  margin: 0 auto;
+}
+
+.header-options {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.install-instructions {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  padding: 1em;
+}
+
+.install-instructions-tool {
+  line-height: 2em;
+}
+
+.install-instructions-command {
+  line-height: 1em;
+  font-family: monospace;
+  border-radius: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.5em;
+  line-height: normal;
+}
+
+.install-instructions-command pre {
+  margin: 0;
+}
+
+.header-buttons {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2em;
+}
+
+.map-preview {
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
+
+#map-main-preview-area {
+  border: 1px solid #ddd;
+  background-color: #f3f6fa;
+  width: 620px;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
+
+.map-main-preview-fit-label {
+  margin: 0 1em 0 0.2em;
+}
+
+#map-main-preview {
+  margin: 1em 0;
+}
+
+#map-main-preview-info {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  font-size: 0.8em;
+}
+
+#map-main-preview-info div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.map-main-preview-info-label {
+  font-weight: bold;
+}
+
+#code-preview-area {
+  border: 1px solid #ddd;
+  background-color: #f3f6fa;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
+
+#code-preview-area pre {
+  background-color: #ffffff;
+  margin: 0.8em 0 0 0;
+}

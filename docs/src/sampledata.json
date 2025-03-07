@@ -1,0 +1,1245 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "AKJ",
+        "name": "Asahikawa Airport",
+        "city": "Asahikawa-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "RJEC",
+        "direct_flights": "4",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.453,
+          43.665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "AOJ",
+        "name": "Aomori Airport",
+        "city": "Aomori-shi",
+        "state": "Aomori Prefecture",
+        "country": "Japan",
+        "icao": "RJSA",
+        "direct_flights": "6",
+        "carriers": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.69,
+          40.7357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "ASJ",
+        "name": "Amami Airport",
+        "city": "Amami O Shima",
+        "state": "Mie Prefecture",
+        "country": "Japan",
+        "icao": "RJKA",
+        "direct_flights": "3",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.712,
+          28.431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "AXT",
+        "name": "Akita Airport",
+        "city": "Akita-shi",
+        "state": "Akita Prefecture",
+        "country": "Japan",
+        "icao": "RJSK",
+        "direct_flights": "7",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.219,
+          39.6153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "CTS",
+        "name": "New Chitose Airport",
+        "city": "Chitose-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "RJCC",
+        "direct_flights": "30",
+        "carriers": "28"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.691,
+          42.7757
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "FKS",
+        "name": "Fukushima Airport",
+        "city": "Sukagawa-shi",
+        "state": "Fukushima Prefecture",
+        "country": "Japan",
+        "icao": "KFKS",
+        "direct_flights": "6",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.429,
+          37.2314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "FUJ",
+        "name": "Fukue Airport",
+        "city": "Goto-shi",
+        "state": "Nagasaki Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.836,
+          32.6726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "FUK",
+        "name": "Fukuoka Airport",
+        "city": "Fukuoka-shi",
+        "state": "Fukuoka Prefecture",
+        "country": "Japan",
+        "icao": "RJFF",
+        "direct_flights": "36",
+        "carriers": "31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.443,
+          33.5971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "GAJ",
+        "name": "Yamagata Airport",
+        "city": "Higashine-shi",
+        "state": "Yamagata Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "4",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.37,
+          38.4109
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HAC",
+        "name": "Hachijojima Airport",
+        "city": "Hachijo-machi",
+        "state": "Tokyo Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.784,
+          33.1153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HIJ",
+        "name": "Hiroshima Airport",
+        "city": "Mihara-shi",
+        "state": "Hiroshima Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "12",
+        "carriers": "12"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.922,
+          34.4368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HKD",
+        "name": "Hakodate Airport",
+        "city": "Hakodate-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "RJCH",
+        "direct_flights": "6",
+        "carriers": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.824,
+          41.7706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HNA",
+        "name": "Hanamaki Airport",
+        "city": "Hanamaki-shi",
+        "state": "Iwate Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "4",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.135,
+          39.4315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HND",
+        "name": "Tokyo International Airport",
+        "city": "Tokyo",
+        "state": "Tokyo Prefecture",
+        "country": "Japan",
+        "icao": "KHND",
+        "direct_flights": "55",
+        "carriers": "19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.771,
+          35.5533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "HSG",
+        "name": "Saga Airport",
+        "city": "Saga",
+        "state": "Tokyo Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "3",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.302,
+          33.1508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "ISG",
+        "name": "Ishigaki Airport",
+        "city": "Ishigaki-shi",
+        "state": "Okinawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "3",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.186,
+          24.3456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "ITM",
+        "name": "Osaka International Airport",
+        "city": "Itami-shi",
+        "state": "Hyogo Prefecture",
+        "country": "Japan",
+        "icao": "RJOO",
+        "direct_flights": "25",
+        "carriers": "10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.439,
+          34.7857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "IZO",
+        "name": "Izumo Airport",
+        "city": "Hikawa-cho",
+        "state": "Shimane Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.887,
+          35.4131
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KCZ",
+        "name": "Kochi Airport",
+        "city": "Nankoku-shi",
+        "state": "Kochi Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "6",
+        "carriers": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.672,
+          33.5468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KIJ",
+        "name": "Niigata Airport",
+        "city": "Niigata-shi",
+        "state": "Niigata Prefecture",
+        "country": "Japan",
+        "icao": "RJSN",
+        "direct_flights": "13",
+        "carriers": "12"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.113,
+          37.9553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KIX",
+        "name": "Kansai International Airport",
+        "city": "Tajiri-cho",
+        "state": "Osaka Prefecture",
+        "country": "Japan",
+        "icao": "RJBB",
+        "direct_flights": "78",
+        "carriers": "61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.244,
+          34.4295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KKJ",
+        "name": "New Kitakyushu Airport",
+        "city": "Kita Kyushu",
+        "state": "Kagoshima Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "4",
+        "carriers": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.033,
+          33.839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KMI",
+        "name": "Miyazaki Airport",
+        "city": "Miyazaki-shi",
+        "state": "Miyazaki Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "7",
+        "carriers": "6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.449,
+          31.8771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KMJ",
+        "name": "Kumamoto Airport",
+        "city": "Kikuyo-machi",
+        "state": "Kumamoto Prefecture",
+        "country": "Japan",
+        "icao": "RJFT",
+        "direct_flights": "7",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.849,
+          32.8346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KMQ",
+        "name": "Komatsu Airport",
+        "city": "Komatsu-shi",
+        "state": "Ishikawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "10",
+        "carriers": "10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.408,
+          36.394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KOJ",
+        "name": "Kagoshima Airport",
+        "city": "Kirishima-shi",
+        "state": "Kagoshima Prefecture",
+        "country": "Japan",
+        "icao": "RJFK",
+        "direct_flights": "11",
+        "carriers": "9"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.718,
+          31.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "KUH",
+        "name": "Kushiro Airport",
+        "city": "Kushiro",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "4",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.194,
+          43.043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MBE",
+        "name": "Okhotsk-Monbetsu Airport",
+        "city": "Monbetsu-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.404,
+          44.3046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MMB",
+        "name": "Memanbetsu Airport",
+        "city": "Ozora-cho",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "5",
+        "carriers": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.163,
+          43.8814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MMY",
+        "name": "Miyako Airport",
+        "city": "Miyako Jima",
+        "state": "Iwate Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "4",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.295,
+          24.7824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MSJ",
+        "name": "Misawa Airport",
+        "city": "Misawa-shi",
+        "state": "Aomori Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.361,
+          40.7053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MYE",
+        "name": "Miyakejima Airport",
+        "city": "Miyake-mura",
+        "state": "Tokyo Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.56,
+          34.0726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "MYJ",
+        "name": "Matsuyama Airport",
+        "city": "Matsuyama-shi",
+        "state": "Ehime Prefecture",
+        "country": "Japan",
+        "icao": "KMYJ",
+        "direct_flights": "10",
+        "carriers": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.7,
+          33.8276
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "NGO",
+        "name": "Chubu International Airport",
+        "city": "Tokoname-shi",
+        "state": "Aichi Prefecture",
+        "country": "Japan",
+        "icao": "RJGG",
+        "direct_flights": "55",
+        "carriers": "37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.811,
+          34.8624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "NGS",
+        "name": "Nagasaki Airport",
+        "city": "Omura-shi",
+        "state": "Nagasaki Prefecture",
+        "country": "Japan",
+        "icao": "KNGS",
+        "direct_flights": "8",
+        "carriers": "8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.917,
+          32.9141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "NKM",
+        "name": "Nagoya Airport",
+        "city": "Toyoyama-cho",
+        "state": "Aichi Prefecture",
+        "country": "Japan",
+        "icao": "RJNA",
+        "direct_flights": "9",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.924,
+          35.2527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "NRT",
+        "name": "Narita International Airport",
+        "city": "Narita-shi",
+        "state": "Chiba Prefecture",
+        "country": "Japan",
+        "icao": "RJAA",
+        "direct_flights": "97",
+        "carriers": "63"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.389,
+          35.7491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "NTQ",
+        "name": "Noto Airport",
+        "city": "Anamizu-machi",
+        "state": "Ishikawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.957,
+          37.2917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OBO",
+        "name": "Obihiro Airport",
+        "city": "Obihiro-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "3",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.216,
+          42.7343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OGN",
+        "name": "Yonaguni Airport",
+        "city": "Yonaguni-cho",
+        "state": "Okinawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.979,
+          24.4674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OIM",
+        "name": "Oshima Airport",
+        "city": "Oshima-machi",
+        "state": "Tokyo Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.361,
+          34.7828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OIT",
+        "name": "Oita Airport",
+        "city": "Kunisaki-shi",
+        "state": "Oita Prefecture",
+        "country": "Japan",
+        "icao": "RJFO",
+        "direct_flights": "4",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.737,
+          33.4801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OKA",
+        "name": "Shimojishima Airport",
+        "city": "Naha-shi",
+        "state": "Okinawa Prefecture",
+        "country": "Japan",
+        "icao": "ROAH",
+        "direct_flights": "28",
+        "carriers": "13"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.146,
+          24.8289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OKD",
+        "name": "Okadama Airport",
+        "city": "Sapporo-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "5",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.382,
+          43.1162
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "OKJ",
+        "name": "Okayama Airport",
+        "city": "Okayama-shi",
+        "state": "Okayama Prefecture",
+        "country": "Japan",
+        "icao": "RJOB",
+        "direct_flights": "7",
+        "carriers": "7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.855,
+          34.7579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "ONJ",
+        "name": "Odate-Noshiro Airport",
+        "city": "Kitakita-shi",
+        "state": "Akita Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.366,
+          40.1931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RIS",
+        "name": "Rishiri Airport",
+        "city": "Rishirifuji-cho",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.186,
+          45.2419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "SDJ",
+        "name": "Sendai Airport",
+        "city": "Natori-shi",
+        "state": "Miyagi Prefecture",
+        "country": "Japan",
+        "icao": "RJSS",
+        "direct_flights": "16",
+        "carriers": "14"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.918,
+          38.1401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "SHB",
+        "name": "Nakashibetsu Airport",
+        "city": "Nakashibetsu-cho",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.958,
+          43.5767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "SHM",
+        "name": "Nanki-Shirahama Airport",
+        "city": "Shirahama-cho",
+        "state": "Wakayama Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.362,
+          33.664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "SYO",
+        "name": "Shonai",
+        "city": "Shonai",
+        "state": "Yamagata Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.018,
+          38.7061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TAK",
+        "name": "Japan",
+        "city": "Takamatsu",
+        "state": "Kagawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "3",
+        "carriers": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.046,
+          34.2557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TKN",
+        "name": "Tokunoshima Airport",
+        "city": "Amagi-cho",
+        "state": "Kagoshima Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.882,
+          27.834
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TKS",
+        "name": "Tokushima Airport",
+        "city": "Matsushige-cho",
+        "state": "Tokushima Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "2",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.603,
+          34.1339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TOY",
+        "name": "Toyama Airport",
+        "city": "Toyama-shi",
+        "state": "Toyama Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "6",
+        "carriers": "5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.187,
+          36.6495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TSJ",
+        "name": "Tsushima Airport",
+        "city": "Tsushima-shi",
+        "state": "Nagasaki Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.33,
+          34.2856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "TTJ",
+        "name": "Tottori Airport",
+        "city": "Tottori-shi",
+        "state": "Tottori Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.166,
+          35.5298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "UBJ",
+        "name": "Yamaguchi-Ube Airport",
+        "city": "Ube-shi",
+        "state": "Yamaguchi Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.276,
+          33.931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "UEO",
+        "name": "Kumejima Airport",
+        "city": "Kumejima-cho",
+        "state": "Okinawa Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "1",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.716,
+          26.3677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "UKB",
+        "name": "Kobe Airport",
+        "city": "Kobe-shi",
+        "state": "Hyogo Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "6",
+        "carriers": "4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.22,
+          34.6356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "WKJ",
+        "name": "Wakkanai Airport",
+        "city": "Wakkanai-shi",
+        "state": "Hokkaido Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "5",
+        "carriers": "1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.801,
+          45.4041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "YGJ",
+        "name": "Yonago Airport",
+        "city": "Sakaiminato-shi",
+        "state": "Tottori Prefecture",
+        "country": "Japan",
+        "icao": "",
+        "direct_flights": "3",
+        "carriers": "3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.237,
+          35.4943
+        ]
+      }
+    }
+  ]
+}
