@@ -140,4 +140,4 @@ This defaults to `0` which prefers to point the map in a northerly bearing.
 ### Additional Features and Documentation
 
 A full set of options and parameter descriptions for `mapFitFeatures` such as tile-size and zoom preferences are 
-described in the [API section of the Readme]().
+described in the [API section of the Readme]({{ site.api_docs_url }}).

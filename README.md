@@ -1,11 +1,14 @@
-# geojson-map-fit-mercator
+# GeoJSON Map Fit Mercator
 
-Given a set of [GeoJSON](https://geojson.org/) features finds the optimal bearing, zoom and center point for fitting all features in a 
+[GeoJSON Map Fit Mercator](https://tristandavey.com/geojson-map-fit-mercator/) finds the optimal bearing, zoom and 
+center point for fitting a set of [GeoJSON](https://geojson.org/) features in a 
 [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/guides) or [MapLibre GL](https://maplibre.org/) viewport. The optimal 
 viewport is calculated by determining the optimal bearing and zoom level to present a 
 [minimum bounding rectangle (MBR)](https://en.wikipedia.org/wiki/Minimum_bounding_rectangle) all the given GeoJSON 
-features. This differs from the [bounding box](https://docs.mapbox.com/help/glossary/bounding-box/)
+features. This can allow you to render more detailed, better fitting maps than the default [bounding box](https://docs.mapbox.com/help/glossary/bounding-box/)
 behaviour which only describes a x/y aligned minimum bounding rectangle.
+
+Checkout the [demo](https://tristandavey.com/geojson-map-fit-mercator#preview) to see the library in action.
 
 ## Installation
 

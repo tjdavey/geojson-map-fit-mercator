@@ -36,7 +36,10 @@
       </div>
       <div class="header-buttons">
         {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+        <a href="{{ site.github.repository_url }}" class="btn">GitHub Repository</a>
+        {% endif %}
+        {% if site.api_docs_url %}
+        <a href="{{ site.api_docs_url }}" class="btn">API Documentation</a>
         {% endif %}
       </div>
     </div>

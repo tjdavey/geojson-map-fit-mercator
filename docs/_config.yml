@@ -17,3 +17,5 @@ exclude:
 
 install_instructions_npm: npm install geojson-map-fit-mercator
 install_instructions_yarn: yarn add geojson-map-fit-mercator
+
+api_docs_url: https://github.com/tjdavey/geojson-map-fit-mercator?tab=readme-ov-file#api
