@@ -45,6 +45,11 @@
   padding: 2em;
 }
 
+.header-buttons .btn, .header-buttons .btn+btn {
+  margin: 0.5em;
+  width: 100%;
+}
+
 .map-preview {
   margin: 0 auto;
   border-radius: 0.3rem;
