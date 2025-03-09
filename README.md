@@ -1,7 +1,9 @@
 # GeoJSON Map Fit Mercator
 
 [![npm version](https://badge.fury.io/js/geojson-map-fit-mercator.svg)](https://badge.fury.io/js/geojson-map-fit-mercator)
-
+[![CI Build](https://github.com/tjdavey/geojson-map-fit-mercator/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/tjdavey/geojson-map-fit-mercator/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/tjdavey/geojson-map-fit-mercator/badge.svg?branch=main)](https://coveralls.io/github/tjdavey/geojson-map-fit-mercator?branch=main)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftjdavey%2Fgeojson-map-fit-mercator.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftjdavey%2Fgeojson-map-fit-mercator?ref=badge_shield&issueType=license)
 
 [GeoJSON Map Fit Mercator](https://tristandavey.com/geojson-map-fit-mercator/) finds the optimal bearing, zoom and 
 center point for fitting a set of [GeoJSON](https://geojson.org/) features in a 

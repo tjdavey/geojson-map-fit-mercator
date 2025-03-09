@@ -28,6 +28,15 @@ jobs:
       - name: Run Jest tests
         run: npm test
 
+      - name: Run Build
+        run: npm run build
+
+      - name: Archive Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist
+
       - name: Collect Coverage
         run: coveralls report
         env:
