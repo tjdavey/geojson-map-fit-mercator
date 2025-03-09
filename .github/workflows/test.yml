@@ -1,0 +1,33 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+
+      - name: Install Coveralls Universal Reporter
+        run: curl -L https://coveralls.io/coveralls-linux.tar.gz | tar -xz -C /usr/local/bin
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Jest tests
+        run: npm test
+
+      - name: Collect Coverage
+        run: coveralls report -t $COVERALLS_REPO_TOKEN
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

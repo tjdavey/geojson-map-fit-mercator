@@ -1,5 +1,8 @@
 # GeoJSON Map Fit Mercator
 
+[![npm version](https://badge.fury.io/js/geojson-map-fit-mercator.svg)](https://badge.fury.io/js/geojson-map-fit-mercator)
+
+
 [GeoJSON Map Fit Mercator](https://tristandavey.com/geojson-map-fit-mercator/) finds the optimal bearing, zoom and 
 center point for fitting a set of [GeoJSON](https://geojson.org/) features in a 
 [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/guides) or [MapLibre GL](https://maplibre.org/) viewport. The optimal 
