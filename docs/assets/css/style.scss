@@ -46,19 +46,70 @@
 }
 
 .header-buttons .btn, .header-buttons .btn+btn {
-  margin: 0.5em 1em;
+  margin: 0.5em 0;
   width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .header-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 6rem;
+    margin: 0 auto;
+  }
+
+  .header-options {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .header-buttons {
+    border-left: none;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .header-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 4rem;
+  }
+}
+
+@media only screen and (max-width: 672px) {
+  .header-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .header-content {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+  }
+
+  .install-instructions {
+    display: none;
+  }
 }
 
 .map-preview {
   margin: 0 auto;
   border-radius: 0.3rem;
+  height: 300px;
+  width: 100%;
+  max-width: 600px;
 }
 
 #map-main-preview-area {
   border: 1px solid #ddd;
   background-color: #f3f6fa;
-  width: 620px;
+  width: 100%;
+  max-width: 620px;
   padding: 10px;
   margin: 0 auto;
   border-radius: 0.3rem;
@@ -75,13 +126,15 @@
 #map-main-preview-info {
   display: flex;
   flex-direction: row;
-  gap: 3em;
+  flex-wrap: wrap;
+  gap: 0.5em 3em;
   font-size: 0.8em;
 }
 
 #map-main-preview-info div {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   gap: 0.5em;
 }
 

@@ -10,8 +10,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 window.addEventListener("load", (event) => {
   setupMapMainPreview();
-  setupPaddingMap();
-  setupBearingMap();
+  addMap('map-padding-preview', {padding: {top: 50, bottom: 50, left: 100, right: 100}});
+  addMap('map-bearing-preview', {preferredBearing: 45});
   setupCodePreview();
 });
 
@@ -22,14 +22,17 @@ function setupMapMainPreview() {
     top: 10,
     bottom: 10
   }
-  const bestFit = mapFitFeatures(
-    sampleData as GeoJSON.FeatureCollection,
-    [600, 300],
-    {maxZoom: 8, padding});
-  const boundingBox = turf.bbox(sampleData as GeoJSON.FeatureCollection);
+  const mapId = 'map-main-preview';
+
+  const previewMap = addMap(mapId, {padding});
 
   document.getElementById('map-main-preview-fit-bestFit').addEventListener('change', function() {
     const radioButton = this as HTMLInputElement;
+
+    const bestFit = mapFitFeatures(
+      sampleData as GeoJSON.FeatureCollection,
+      [document.getElementById(mapId).clientWidth, document.getElementById(mapId).clientHeight],
+      {maxZoom: 8, padding});
 
     if (radioButton.checked) {
       previewMap.easeTo({
@@ -43,21 +46,12 @@ function setupMapMainPreview() {
   document.getElementById('map-main-preview-fit-bbox').addEventListener('change', function() {
     const radioButton = this as HTMLInputElement;
 
+    const boundingBox = turf.bbox(sampleData as GeoJSON.FeatureCollection);
+
     if (radioButton.checked) {
       previewMap.fitBounds(boundingBox as LngLatBoundsLike, {padding});
     }
   });
-
-  const previewMap = new Map({
-    container: 'map-main-preview',
-    style: 'https://demotiles.maplibre.org/style.json',
-    center: bestFit.center,
-    bearing: bestFit.bearing,
-    zoom: bestFit.zoom,
-    interactive: false,
-  });
-
-  addSampleDataToMap(previewMap);
 
   function updateMapInfo() {
     document.getElementById('map-main-preview-info-center').innerText = `${previewMap.getCenter().toArray().map((coord => coord.toFixed(4))).join(', ')}`;
@@ -73,21 +67,24 @@ function setupMapMainPreview() {
 }
 
 function setupPaddingMap() {
+  const padding ={
+    top: 50,
+    bottom: 50,
+    left: 100,
+    right: 100
+  }
+  const mapId = 'map-padding-preview';
+
   const fit = mapFitFeatures(
     sampleData as GeoJSON.FeatureCollection,
-    [600, 300],
+    [document.getElementById(mapId).clientWidth, document.getElementById(mapId).clientHeight],
     {
-      padding: {
-        top: 50,
-        bottom: 50,
-        left: 100,
-        right: 100
-      }
+      padding
     }
   );
 
   const paddingMap = new Map({
-    container: 'map-padding-preview',
+    container: mapId,
     style: 'https://demotiles.maplibre.org/style.json',
     center: fit.center,
     bearing: fit.bearing,
@@ -96,27 +93,11 @@ function setupPaddingMap() {
   });
 
   addSampleDataToMap(paddingMap);
+  setupMapResize(paddingMap, 'map-padding-preview', padding);
 }
 
 function setupBearingMap() {
-  const fit = mapFitFeatures(
-    sampleData as GeoJSON.FeatureCollection,
-    [600, 300],
-    {
-      preferredBearing: 180
-    }
-  );
 
-  const bearingMap = new Map({
-    container: 'map-bearing-preview',
-    style: 'https://demotiles.maplibre.org/style.json',
-    center: fit.center,
-    bearing: fit.bearing,
-    zoom: fit.zoom,
-    interactive: false,
-  });
-
-  addSampleDataToMap(bearingMap);
 }
 
 function setupCodePreview() {
@@ -139,6 +120,28 @@ function setupCodePreview() {
   });
 }
 
+function addMap(mapId, fitOptions) {
+  const fit = mapFitFeatures(
+    sampleData as GeoJSON.FeatureCollection,
+    [document.getElementById(mapId).clientWidth, document.getElementById(mapId).clientHeight],
+    fitOptions
+  );
+
+  const map = new Map({
+    container: mapId,
+    style: 'https://demotiles.maplibre.org/style.json',
+    center: fit.center,
+    bearing: fit.bearing,
+    zoom: fit.zoom,
+    interactive: false,
+  });
+
+  addSampleDataToMap(map);
+  setupMapResize(map, mapId, fitOptions.padding || {});
+
+  return map;
+}
+
 function addSampleDataToMap(map) {
   map.on('load', () => {
     map.addSource('sample-data', {
@@ -157,6 +160,21 @@ function addSampleDataToMap(map) {
         'circle-stroke-color': '#000000'
       }
     });
+  });
+}
+
+function setupMapResize(map, id, padding) {
+  window.addEventListener('resize', () => {
+    if(window.innerWidth < 720) {
+      // Window is small enough to begin impacting the width of the maps. Recalculate the map size to fit the new window size.
+      const fit = mapFitFeatures(
+        sampleData as GeoJSON.FeatureCollection,
+        [document.getElementById(id).clientWidth, document.getElementById(id).clientHeight],
+        {maxZoom: 8, padding});
+
+      map.easeTo(fit);
+    }
+
   });
 }
 

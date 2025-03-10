@@ -21,7 +21,7 @@ minimum bounding rectangle.
       <label class="map-main-preview-fit-label" for="map-main-preview-fit-bbox">Bounding Box</label>
     </fieldset>
 
-    <div id="map-main-preview" class="map-preview" style="width: 600px; height: 300px;"></div>
+    <div id="map-main-preview" class="map-preview"></div>
 
     <div id="map-main-preview-info">
       <div>
@@ -118,7 +118,7 @@ This padding object is identical to the [Mapbox GL JS `paddingOptions` object](h
   );
 ```
 
-<div id="map-padding-preview" class="map-preview" style="width: 600px; height: 300px;"></div>
+<div id="map-padding-preview" class="map-preview"></div>
 
 #### Bearing Preference
 
@@ -136,7 +136,7 @@ This defaults to `0` which prefers to point the map in a northerly bearing.
   );
 ```
 
-<div id="map-bearing-preview" class="map-preview" style="width: 600px; height: 300px;"></div>
+<div id="map-bearing-preview" class="map-preview"></div>
 
 ### Additional Features and Documentation
 
