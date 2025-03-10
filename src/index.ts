@@ -128,11 +128,11 @@ function findScreenBearing(boundingRectangleBearing: number, preferredBearing: n
   let bearing = boundingRectangleBearing;
   // Rotate the bearing by 90 degrees if the screen is wider than it is tall
   if (screenRatio > 1) {
-    bearing = bearing + 90 % 360;
+    bearing = bearing + (90 % 360);
   }
 
   // Rotate the bearing 180 degrees if the preferred bearing is on the opposite side of the screen
-  if (bearing < preferredBearing - 90 % 360 || bearing > preferredBearing + 90 % 360) {
+  if (bearing < preferredBearing - (90 % 360) || bearing > preferredBearing + (90 % 360)) {
     bearing = (bearing + 180) % 360;
   }
 
@@ -147,31 +147,39 @@ function findScreenCenter(
   merc: SphericalMercator,
 ) {
   const { left = 0, right = 0, top = 0, bottom = 0 } = padding;
-  const centerPoint = turf.center(boundingRectangle);
-  if (!centerPoint) {
-    throw new Error('Unable to calculate centre of surrounding rectangle');
-  }
-  const center = turf.getCoord(centerPoint)!;
-  if (!isLngLat(center)) {
-    throw new Error('Unable to calculate centre of surrounding rectangle');
-  }
 
-  const centerPx = merc.px(center, zoom);
+  // Use the bounding rectangle's pixel location to calculate the centre of the
+  // map. This allows us to account for mercator projection distortion.
+  const coords = turf.getCoords(boundingRectangle);
+  const uniqCoords = coords[0].reduce((uniq: Position[], coord: [number, number]) => {
+    if (!uniq.find((c) => c[0] === coord[0] && c[1] === coord[1])) {
+      uniq.push(coord);
+    }
+    return uniq;
+  }, []);
 
-  // Calculate the offset required to center the polygon in the viewport
+  const sumCoords = uniqCoords.reduce(
+    (acc: [number, number], coord: [number, number]) => {
+      const [x, y] = merc.px(coord as LngLat, zoom);
+      acc[0] = acc[0] + x;
+      acc[1] = acc[1] + y;
+      return acc;
+    },
+    [0, 0],
+  );
+
+  const midX = sumCoords[0] / uniqCoords.length;
+  const midY = sumCoords[1] / uniqCoords.length;
+
   const xPaddingOffset = right - left;
   const yPaddingOffset = bottom - top;
 
-  if (xPaddingOffset != 0 || yPaddingOffset != 0) {
-    const bearingRadians = bearing * (Math.PI / 180);
+  const bearingRadians = bearing * (Math.PI / 180);
 
-    const centerXOffset = xPaddingOffset * Math.cos(bearingRadians) - yPaddingOffset * Math.sin(bearingRadians);
-    const centerYOffset = xPaddingOffset * Math.sin(bearingRadians) + yPaddingOffset * Math.cos(bearingRadians);
+  const centerXOffset = xPaddingOffset * Math.cos(bearingRadians) - yPaddingOffset * Math.sin(bearingRadians);
+  const centerYOffset = xPaddingOffset * Math.sin(bearingRadians) + yPaddingOffset * Math.cos(bearingRadians);
 
-    return merc.ll([centerPx[0] + centerXOffset, centerPx[1] + centerYOffset], zoom);
-  } else {
-    return merc.ll(centerPx, zoom);
-  }
+  return merc.ll([midX + centerXOffset, midY + centerYOffset], zoom);
 }
 
 export function minimumBoundingRectangle(geoJsonInput: turf.AllGeoJSON): {
@@ -251,10 +259,6 @@ function findRectangleOrientation(rectangle: Feature<Polygon>): rectangleOrienta
     },
     { shortSide: undefined, longSide: undefined },
   );
-}
-
-function isLngLat(lonLat: Position): lonLat is LngLat {
-  return lonLat.length === 2 && lonLat.every((coord) => typeof coord === 'number');
 }
 
 export { mapFitFeatures };
