@@ -52,4 +52,19 @@ describe('mapFitFeatures', () => {
       center: [153.03229437366502, -27.588626358968774],
     });
   });
+
+  it('should fit the map to a set of features with a preferred bearing', () => {
+    // This ficture set produces a bearing of 67.26319164329749, but if we set a preferred bearing of 210, it should be 247.2631916432975
+    const result = mapFitFeatures(fixturePoints1, [800, 600], {
+      preferredBearing: 210,
+    });
+
+    expect(result).toEqual({
+      bearing: 247.2631916432975,
+      zoom: 10.28961353474488,
+      center: [153.0370867491144, -27.525132573088545],
+    });
+  });
 });
+
+
