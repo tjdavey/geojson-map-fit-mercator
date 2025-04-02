@@ -7,10 +7,10 @@ describe('findScreenBearing', () => {
     expect(result).toEqual(23.564);
   });
 
-  it('should return the west-oriented bearing of the most long side of the bounding rectangle if the screen is portrait and preferredBearing 270 is given', () => {
-    const result = findScreenBearing(23.564,270, 0.5);
+  it('should return the north-oriented bearing of the most long side of the bounding rectangle if the screen is portrait but the boundingRectangleBearing is facing south', () => {
+    const result = findScreenBearing(180.1584,0, 0.5);
 
-    expect(result).toEqual(203.564);
+    expect(result).toEqual(0.15840000000002874);
   });
 
   it('should return the bearing 90 off the most north-oriented long side of the bounding rectangle if the screen is landscape', () => {
@@ -20,7 +20,7 @@ describe('findScreenBearing', () => {
   });
 
   it('should return the south-oriented bearing of the most long side of the bounding rectangle if the screen is landscape and preferredBearing 180 is given', () => {
-    const result = findScreenBearing(23.564,  180,  1.2);
+    const result = findScreenBearing(23.564, 180, 1.2);
 
     expect(result).toEqual(113.564);
   });

@@ -51,6 +51,7 @@ export function findScreenBearing(boundingRectangleBearing: number, preferredBea
   }
 
   // Rotate the bearing 180 degrees if the preferred bearing is on the opposite side of the screen
+  console.log(bearing < (preferredBearing - 90) % 360, bearing > (preferredBearing + 90) % 360);
   if (bearing < (preferredBearing - 90) % 360 || bearing > (preferredBearing + 90) % 360) {
     bearing = (bearing + 180) % 360;
   }
@@ -64,7 +65,7 @@ export function findScreenCenter(
   zoom: number,
   padding: mapFitPadding,
   merc: SphericalMercator,
-) {
+): LngLat {
   const { left = 0, right = 0, top = 0, bottom = 0 } = padding;
 
   // Use the bounding rectangle's pixel location to calculate the centre of the
