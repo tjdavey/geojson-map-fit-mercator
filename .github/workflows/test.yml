@@ -38,6 +38,8 @@ jobs:
           path: dist
 
       - name: Collect Coverage
-        run: coveralls report
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        if: ${{ env.COVERALLS_REPO_TOKEN != '' }}
+        run: coveralls report
+
