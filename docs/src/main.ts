@@ -1,6 +1,6 @@
 import { Map } from 'maplibre-gl';
 import { mapFitFeatures } from '../../src/index';
-import * as turf from '@turf/turf';
+import bbox from '@turf/bbox';
 import type { GeoJSON } from 'geojson';
 import type { LngLatBoundsLike } from 'maplibre-gl';
 
@@ -46,7 +46,7 @@ function setupMapMainPreview() {
   document.getElementById('map-main-preview-fit-bbox').addEventListener('change', function() {
     const radioButton = this as HTMLInputElement;
 
-    const boundingBox = turf.bbox(sampleData as GeoJSON.FeatureCollection);
+    const boundingBox = bbox(sampleData as GeoJSON.FeatureCollection);
 
     if (radioButton.checked) {
       previewMap.fitBounds(boundingBox as LngLatBoundsLike, {padding});
