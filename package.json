@@ -79,7 +79,7 @@
   "bugs": {
     "url": "https://github.com/tjdavey/geojson-map-fit-mercator/issues"
   },
-  "homepage": "https://tristandavey.com/geojson-map-fit-mercator",
+  "homepage": "https://tjdavey.github.io/geojson-map-fit-mercator/",
   "dependencies": {
     "@mapbox/sphericalmercator": "^2.0.1",
     "@turf/bearing": "^7.2.0",

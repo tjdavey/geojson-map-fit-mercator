@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/tjdavey/geojson-map-fit-mercator/badge.svg?branch=main)](https://coveralls.io/github/tjdavey/geojson-map-fit-mercator?branch=main)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftjdavey%2Fgeojson-map-fit-mercator.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftjdavey%2Fgeojson-map-fit-mercator?ref=badge_shield&issueType=license)
 
-[GeoJSON Map Fit Mercator](https://tristandavey.com/geojson-map-fit-mercator/) finds the optimal bearing, zoom and 
+[GeoJSON Map Fit Mercator](https://tjdavey.github.io/geojson-map-fit-mercator/) finds the optimal bearing, zoom and 
 center point for fitting a set of [GeoJSON](https://geojson.org/) features in a 
 [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/guides) or [MapLibre GL](https://maplibre.org/) viewport. The optimal 
 viewport is calculated by determining the optimal bearing and zoom level to present a 
@@ -13,7 +13,7 @@ viewport is calculated by determining the optimal bearing and zoom level to pres
 features. This can allow you to render more detailed, better fitting maps than the default [bounding box](https://docs.mapbox.com/help/glossary/bounding-box/)
 behaviour which only describes a x/y aligned minimum bounding rectangle.
 
-Checkout the [demo](https://tristandavey.com/geojson-map-fit-mercator#preview) to see the library in action.
+Checkout the [demo](https://tjdavey.github.io/geojson-map-fit-mercator/#preview) to see the library in action.
 
 ## Installation
 

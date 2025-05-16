@@ -4,7 +4,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Typescript library for finding the optimal bearing, zoom and center point for fitting a set of GeoJSON features in a 
   Mapbox GL or LibreMap Mercator map viewport.
 baseurl: "/geojson-map-fit-mercator" # the subpath of your site, e.g. /blog
-url: "https://tristandavey.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://tjdavey.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  tjdavey
 
 # Build settings
