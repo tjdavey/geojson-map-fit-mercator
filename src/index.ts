@@ -1,8 +1,17 @@
 import { SphericalMercator } from '@mapbox/sphericalmercator';
-import * as turf from '@turf/turf';
+import { bearing } from '@turf/bearing';
+import { convex } from '@turf/convex';
+import { getCoords } from '@turf/invariant';
 import type { Polygon, Feature, FeatureCollection, LineString } from 'geojson';
-import { findScreenCenter, findScreenBearing, findScreenZoom} from './screen';
+import { findScreenCenter, findScreenBearing, findScreenZoom } from './screen';
 import { XY, mapFitPadding, mapFitOptions, mapFitResult, rectangleOrientation, boundingOrientation } from './types';
+import transformRotate from '@turf/transform-rotate';
+import centroid from '@turf/centroid';
+import { segmentReduce } from '@turf/meta';
+import polygonToLine from '@turf/polygon-to-line';
+import envelope from '@turf/envelope';
+import { length } from '@turf/length';
+import type { AllGeoJSON } from '@turf/helpers';
 
 function mapFitFeatures(
   features: FeatureCollection,
@@ -51,17 +60,17 @@ function mapFitFeatures(
   return { bearing, zoom, center };
 }
 
-export function minimumBoundingRectangle(geoJsonInput: turf.AllGeoJSON): {
+export function minimumBoundingRectangle(geoJsonInput: AllGeoJSON): {
   boundsOrientation: boundingOrientation;
   boundingRectangle: Feature<Polygon>;
 } {
   // Create a convex hull around the input geometry
-  const convexHull = turf.convex(geoJsonInput);
+  const convexHull = convex(geoJsonInput);
   if (!convexHull) throw new Error("Can't determine minimumBoundingRectangle for given geometry");
 
   // Break the hull into its constituent edges and find the smallest
-  const hullLines = turf.polygonToLine(convexHull);
-  const smallestHullBoundsOrientation = turf.segmentReduce(
+  const hullLines = polygonToLine(convexHull);
+  const smallestHullBoundsOrientation = segmentReduce(
     hullLines,
     (smallestEnvelope: boundingOrientation | undefined, segment) => {
       return smallestHullEnvelopeReducer(smallestEnvelope, segment!, convexHull);
@@ -69,11 +78,11 @@ export function minimumBoundingRectangle(geoJsonInput: turf.AllGeoJSON): {
     { bearing: undefined, orientation: { shortSide: undefined, longSide: undefined }, envelope: undefined },
   );
 
-  const boundingRectangle = turf.transformRotate(
-    turf.envelope(smallestHullBoundsOrientation.envelope!),
+  const boundingRectangle = transformRotate(
+    envelope(smallestHullBoundsOrientation.envelope!),
     smallestHullBoundsOrientation.bearing!,
     {
-      pivot: turf.centroid(convexHull),
+      pivot: centroid(convexHull),
     },
   );
 
@@ -88,39 +97,39 @@ function smallestHullEnvelopeReducer(
   segment: Feature<LineString>,
   hull: Feature<Polygon>,
 ): boundingOrientation {
-  const segmentCoords = turf.getCoords(segment);
-  const bearing = turf.bearing(segmentCoords[0], segmentCoords[1]);
+  const segmentCoords = getCoords(segment);
+  const segmentBearing = bearing(segmentCoords[0], segmentCoords[1]);
 
-  const rotatedHull = turf.transformRotate(hull, -1.0 * bearing, {
-    pivot: turf.centroid(hull),
+  const rotatedHull = transformRotate(hull, -1.0 * segmentBearing, {
+    pivot: centroid(hull),
   });
-  const envelopeOfHull = turf.envelope(rotatedHull);
+  const envelopeOfHull = envelope(rotatedHull);
 
   const rectangleOrientation = findRectangleOrientation(envelopeOfHull);
-  const shortSideLength = turf.length(rectangleOrientation.shortSide!);
+  const shortSideLength = length(rectangleOrientation.shortSide!);
 
   if (
     smallestEnvelope!.orientation.shortSide == undefined ||
-    shortSideLength < turf.length(smallestEnvelope!.orientation.shortSide)
+    shortSideLength < length(smallestEnvelope!.orientation.shortSide)
   ) {
-    return { bearing, orientation: rectangleOrientation, envelope: envelopeOfHull };
+    return { bearing: segmentBearing, orientation: rectangleOrientation, envelope: envelopeOfHull };
   }
 
   return smallestEnvelope!;
 }
 
 function findRectangleOrientation(rectangle: Feature<Polygon>): rectangleOrientation {
-  const rectangleSides = turf.polygonToLine(rectangle);
-  return turf.segmentReduce(
+  const rectangleSides = polygonToLine(rectangle);
+  return segmentReduce(
     rectangleSides,
     (sideOrientation: rectangleOrientation | undefined, segment): rectangleOrientation => {
-      const segmentLength = turf.length(segment!);
+      const segmentLength = length(segment!);
 
-      if (sideOrientation!.shortSide == undefined || turf.length(sideOrientation!.shortSide) > segmentLength) {
+      if (sideOrientation!.shortSide == undefined || length(sideOrientation!.shortSide) > segmentLength) {
         sideOrientation!.shortSide = segment!;
       }
 
-      if (sideOrientation!.longSide == undefined || turf.length(sideOrientation!.longSide) < segmentLength) {
+      if (sideOrientation!.longSide == undefined || length(sideOrientation!.longSide) < segmentLength) {
         sideOrientation!.longSide = segment!;
       }
 

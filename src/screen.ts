@@ -1,7 +1,7 @@
-import * as turf from '@turf/turf';
 import type { Feature, Polygon, Position } from 'geojson';
 import { SphericalMercator } from '@mapbox/sphericalmercator';
 import { XY, LngLat, mapFitPadding, rectangleOrientation } from './types';
+import { getCoords } from '@turf/invariant';
 
 export function findScreenZoom(
   paddedScreenDimensions: XY,
@@ -12,8 +12,8 @@ export function findScreenZoom(
   merc: SphericalMercator,
 ): number {
   const { shortSide, longSide } = boundingRectangleOrientation;
-  const longSideCoords = turf.getCoords(longSide!);
-  const shortSideCoords = turf.getCoords(shortSide!);
+  const longSideCoords = getCoords(longSide!);
+  const shortSideCoords = getCoords(shortSide!);
 
   // We need to determine the ratio required for the zoom level. To do this we are going to approximate the length
   // of the longest and shortest sides of the polygon in pixels (This doesn't account for projection distortion but is
@@ -43,7 +43,11 @@ export function findScreenZoom(
   return floatZoom ? zoom : Math.floor(zoom);
 }
 
-export function findScreenBearing(boundingRectangleBearing: number, preferredBearing: number, screenRatio: number): number {
+export function findScreenBearing(
+  boundingRectangleBearing: number,
+  preferredBearing: number,
+  screenRatio: number,
+): number {
   let bearing = boundingRectangleBearing;
   // Rotate the bearing by 90 degrees if the screen is wider than it is tall
   if (screenRatio > 1) {
@@ -69,7 +73,7 @@ export function findScreenCenter(
 
   // Use the bounding rectangle's pixel location to calculate the centre of the
   // map. This allows us to account for mercator projection distortion.
-  const coords = turf.getCoords(boundingRectangle);
+  const coords = getCoords(boundingRectangle);
   const uniqCoords = coords[0].reduce((uniq: Position[], coord: [number, number]) => {
     if (!uniq.find((c) => c[0] === coord[0] && c[1] === coord[1])) {
       uniq.push(coord);

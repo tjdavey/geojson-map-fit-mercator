@@ -82,7 +82,16 @@
   "homepage": "https://tristandavey.com/geojson-map-fit-mercator",
   "dependencies": {
     "@mapbox/sphericalmercator": "^2.0.1",
-    "@turf/turf": "^7.2.0",
+    "@turf/bearing": "^7.2.0",
+    "@turf/centroid": "^7.2.0",
+    "@turf/convex": "^7.2.0",
+    "@turf/envelope": "^7.2.0",
+    "@turf/helpers": "^7.2.0",
+    "@turf/invariant": "^7.2.0",
+    "@turf/length": "^7.2.0",
+    "@turf/meta": "^7.2.0",
+    "@turf/polygon-to-line": "^7.2.0",
+    "@turf/transform-rotate": "^7.2.0",
     "geojson": "^0.5.0"
   }
 }
