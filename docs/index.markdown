@@ -65,7 +65,7 @@ const { bearing, center, zoom } = mapFitFeatures(
 );
 
 const map = new new maplibregl.Map({
-  container: 'map', // container ID for a 600px by 400px element
+  container: 'map', // container ID for a 600px by 300px element
   style: 'https://demotiles.maplibre.org/style.json',
   center: center, // starting position [lng, lat]
   zoom: zoom, // starting zoom
