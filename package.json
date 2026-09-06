@@ -22,6 +22,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:dist": "node test/smoke.mjs",
     "lint:types": "tsc --project ./tsconfig.json --noEmit",
     "lint:ts": "eslint src",
     "lint": "npm run lint:types && npm run lint:ts",

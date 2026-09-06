@@ -30,6 +30,19 @@ function createOutputOptions(options) {
 }
 
 /**
+ * Runtime dependencies must not be bundled: consumers install them from the
+ * package's own `dependencies`. Declaring them keeps Rollup from falling back
+ * to its unresolved-module behaviour, which assumes `module.exports` is the
+ * default export and breaks the CommonJS build for packages that export an
+ * ES module shape.
+ * @param {string} id
+ * @returns {boolean}
+ */
+function isExternal(id) {
+  return Object.keys(packageJSON.dependencies).some((dep) => id === dep || id.startsWith(`${dep}/`));
+}
+
+/**
  * @type {import('rollup').RollupOptions}
  */
 const options = {
@@ -51,7 +64,7 @@ const options = {
       tsconfig: './tsconfig.bundle.json',
     }),
   ],
-  external: ['geojson-minimum-bounding-rectangle', '@mapbox/sphericalmercator', '@turf/turf']
+  external: isExternal,
 };
 
 export default options;

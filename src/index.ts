@@ -5,11 +5,11 @@ import { getCoords } from '@turf/invariant';
 import type { Polygon, Feature, FeatureCollection, LineString } from 'geojson';
 import { findScreenCenter, findScreenBearing, findScreenZoom } from './screen';
 import { XY, mapFitPadding, mapFitOptions, mapFitResult, rectangleOrientation, boundingOrientation } from './types';
-import transformRotate from '@turf/transform-rotate';
-import centroid from '@turf/centroid';
+import { transformRotate } from '@turf/transform-rotate';
+import { centroid } from '@turf/centroid';
 import { segmentReduce } from '@turf/meta';
-import polygonToLine from '@turf/polygon-to-line';
-import envelope from '@turf/envelope';
+import { polygonToLine } from '@turf/polygon-to-line';
+import { envelope } from '@turf/envelope';
 import { length } from '@turf/length';
 import type { AllGeoJSON } from '@turf/helpers';
 
